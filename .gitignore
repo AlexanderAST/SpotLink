@@ -1,3 +1,4 @@
 .vscode
 .spotLink
+**/__pycache__/
 .env

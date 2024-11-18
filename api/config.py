@@ -11,15 +11,13 @@ class DB(NamedTuple):
 class Config(NamedTuple):
     DB:DB
 
+env = Env()
+env.read_env(override=True)
+
 def load_config() -> Config:
     def db_url(user:str, pwd:str, host:str, port:str, db:str) -> str:
         return f"postgresql+asyncpg://{user}:{pwd}@{host}:{port}/{db}"
     
-    def api_url(url:str ,api_key: str) -> str:
-        return f"{url}/{api_key}"
-    
-    env = Env()
-    env.read_env(override=True)
 
     return Config(
         DB(

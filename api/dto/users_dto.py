@@ -1,7 +1,18 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
-class Users(BaseModel):
-    City:str
-    UserName: str
-    Email: str
-    Password: str
+class UsersCreateDTO(BaseModel):
+    city:str
+    username: str
+    email: EmailStr
+    password: str
+    
+
+class UsersCreateResponseDTO(BaseModel):
+    id: int
+    username: str
+    status: str
+
+
+class UsersAuth(BaseModel):
+    email:EmailStr
+    password:str
