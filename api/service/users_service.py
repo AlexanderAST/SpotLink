@@ -3,7 +3,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from api.repository.users_repository import UsersRepository
 from api.dto.users_dto import UsersCreateDTO, UsersAuth
 from passlib.context import CryptContext
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import jwt
 from datetime import datetime, timedelta
 from api.config import env
@@ -11,7 +10,6 @@ from api.config import env
 SECRET_KEY = env.str("SECRET_KEY")
 ALGORITHM = env.str("ALGORITHM")
 ACCESS_TOKEN_EXPIRE_MINUTES = env.int("ACCESS_TOKEN_EXPIRE_MINUTES")
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 

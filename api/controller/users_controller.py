@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Header
 from sqlalchemy.ext.asyncio import AsyncSession
-from api.service.users_service import oauth2_scheme, UsersService
+from api.service.users_service import UsersService
 from api.dto.users_dto import UsersCreateDTO, UsersCreateResponseDTO, UsersAuth
 from api.database import get_db
 from api.repository.users_repository import UsersRepository
@@ -31,7 +31,7 @@ async def sign_in(user:UsersAuth, db:AsyncSession = Depends(get_db)):
 
 @router.get("/users/validate-token")
 async def validate_token(
-    token: str = Depends(oauth2_scheme),
+    token: str = Header(alias="Bearer"),
     db: AsyncSession = Depends(get_db)):
     
     if not token:
